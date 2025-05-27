@@ -1,0 +1,10 @@
+﻿@model MyMvcApp.ViewModel.ProductDetailViewModel
+@{
+	ViewData["Title"] = $"{Model.Name}'s detail";
+}
+
+<div class="row">
+	<h1>@Model.Name</h1>
+	<p>price: <span class="badge bg-info">$@Model.Price</span></p>
+	<p>@Model.Description</p>
+</div>

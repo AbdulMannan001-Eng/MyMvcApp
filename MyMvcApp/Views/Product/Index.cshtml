@@ -1,0 +1,46 @@
+﻿@model List<MyMvcApp.ViewModel.ProductViewModel>
+@{
+    ViewData["Title"] = "List of products";
+}
+
+<h4>@ViewData["Title"]</h4>
+<a asp-action="Create" class="btn btn-primary">Create New Product</a>
+<hr>
+@if (Model.Count > 0)
+{
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td style="vertical-align: middle;">@product.Id</td>
+                        <td style="vertical-align: middle;">@product.Name</td>
+                        <td style="vertical-align: middle;">@product.Price</td>
+                        <td style="vertical-align: middle;">
+                            <a class="btn btn-link" asp-action="Detail" asp-route-id="@product.Id">Detail</a>
+                            <a class="btn btn-success" asp-action="Update" asp-route-id="@product.Id">Update</a>
+                            <form asp-action="Delete" asp-route-id="@product.Id" method="post"
+                                style="display:inline-block; margin:0;">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <h5>No products Found</h5>
+}
